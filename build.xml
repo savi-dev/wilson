@@ -1,74 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<!-- By default, only the Clean and Build commands use this build script. -->
-<!-- Commands such as Run, Debug, and Test only use this build script if -->
-<!-- the Compile on Save feature is turned off for the project. -->
-<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
-<!-- in the project's Project Properties dialog box.-->
-<project name="Authentication" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Authentication.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
+<!--
+  Copyright (c) 2012, The SAVI Project. All rights reserved.
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
+  Wilson
+  Main ant file.
 
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
+  Soheil Hasssas Yeganeh <soheil@cs.toronto.edu>
+-->
+<project name="Wilson" default="all"
+    xmlns:ivy="antlib:org.apache.ivy.ant">
+  <description>
+    Security-related stuff in SAVI.
+  </description>
 
-    (Targets beginning with '-' are not intended to be called on their own.)
+  <!-- TODO: Fill these variables. -->
+  <property name="PROJECT_NAME" value="wilson" />
+  <property name="VERSION" value="0.1" />
+  <property name="TEST_SUITE_CLASS"
+      value="ca.savi.testbed.authentication.AllTests" />
 
-    Example of inserting an obfuscator after compilation could look like this:
+  <property name="DEBUG" value="true" />
 
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
+  <!-- DIRECTORIES -->
+  <property name="SAVI_HOME" value="../" />
+  <property name="PROJECT_HOME" value="./" />
+  <property name="MOON_HOME" value="../moon/" />
 
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
+  <property name="BUILD_DIR" value="${PROJECT_HOME}/build/" />
+  <property name="CLASSES_DIR" value="${PROJECT_HOME}/build/classes/" />
+  <property name="DIST_DIR" value="${PROJECT_HOME}/dist/" />
+  <property name="GEN_DIR" value="${PROJECT_HOME}/build/gen-src/" />
+  <property name="GEN_SRC_DIR" value="${PROJECT_HOME}/${GEN_DIR}/java/" />
+  <property name="LIB_DIR" value="${PROJECT_HOME}/build/lib/" />
+  <property name="MOON_LIB_DIR" value="${MOON_HOME}/build/lib/" />
+  <property name="MOON_DIST_DIR" value="${MOON_HOME}/dist/" />
+  <property name="RESOURCES_DIR" value="resources/" />
+  <property name="SRC_DIR" value="${PROJECT_HOME}/src/java/" />
+  <property name="SRC_TEST_DIR" value="${PROJECT_HOME}/test/java/" />
 
+  <!-- CLASSPATH -->
+  <path id="classpath.lib">
+    <fileset dir="${LIB_DIR}" includes="*.jar" />
+    <fileset dir="${MOON_LIB_DIR}" includes="*.jar" />
+    <fileset dir="${MOON_DIST_DIR}" includes="*.jar" />
+  </path>
 
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
+  <path id="classpath.all">
+    <path refid="classpath.lib" />
+    <pathelement location="${CLASSES_DIR}" />
+  </path>
 
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar-with-manifest:    JAR building (if you are using a manifest)
-      -do-jar-without-manifest: JAR building (if you are not using a manifest)
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
+  <!-- TARGETS -->
+  <target name="all" depends="build">
+  </target>
 
-    An example of overriding the target for project execution could look like this:
+  <target name="dist" depends="build">
+    <jar destfile="${DIST_DIR}/${PROJECT_NAME}-${VERSION}.jar">
+      <fileset dir="${CLASSES_DIR}">
+        <include name="**/*"/>
+      </fileset>
+    </jar>
+  </target>
 
-        <target name="run" depends="Authentication-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
+  <target name="build" depends="deps">
+    <javac srcdir="${SRC_DIR}:${GEN_SRC_DIR}"
+        includeantruntime="false" destdir="${CLASSES_DIR}" debug="${DEBUG}">
+      <classpath refid="classpath.lib" />
+    </javac>
+    <copy todir="${CLASSES_DIR}">
+      <fileset dir="${RESOURCES_DIR}">
+        <include name="**/*" />
+      </fileset>
+    </copy>
+  </target>
 
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
+  <target name="test" depends="build-test">
+    <junit>
+      <classpath refid="classpath.all" />
+      <formatter type="brief" usefile="false" />
+      <test name="${TEST_SUITE_CLASS}" />
+    </junit>
+  </target>
 
-    -->
+  <target name="build-test" depends="build">
+    <javac srcdir="${SRC_TEST_DIR}:${GEN_SRC_DIR}"
+        includeantruntime="false" destdir="${CLASSES_DIR}" debug="${DEBUG}">
+      <classpath refid="classpath.lib" />
+    </javac>
+  </target>
+
+  <target name="deps" depends="prepare">
+    <ivy:configure file="ivy-settings.xml" override="true"/>
+    <ivy:retrieve refresh="true" type="jar,bundle"
+        pattern="${LIB_DIR}/[artifact].[ext]" />
+  </target>
+
+  <target name="prepare">
+    <mkdir dir="${BUILD_DIR}" />
+    <mkdir dir="${CLASSES_DIR}" />
+    <mkdir dir="${DIST_DIR}" />
+    <mkdir dir="${GEN_DIR}" />
+    <mkdir dir="${GEN_SRC_DIR}" />
+    <mkdir dir="${LIB_DIR}" />
+
+    <ant antfile="../moon/build.xml" inheritall="false" inheritrefs="false"
+        target="dist"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${BUILD_DIR}">
+    </delete>
+    <delete dir="${DIST_DIR}">
+    </delete>
+  </target>
 </project>

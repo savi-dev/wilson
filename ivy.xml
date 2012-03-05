@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2012, The SAVI Project. All rights reserved.
+
+  Wilson
+  Main ivy file.
+
+  Soheil Hasssas Yeganeh <soheil@cs.toronto.edu>
+-->
+<ivy-module version="2.0">
+  <info organisation="ca.savi" module="Wilson"/>
+  <dependencies>
+    <dependency org="commons-lang" name="commons-lang" rev="2.5" />
+    <dependency org="commons-logging" name="commons-logging" rev="1.1.1" />
+    <dependency org="commons-collections" name="commons-collections"
+        rev="3.1" />
+    <dependency org="log4j" name="log4j" rev="1.2.16" />
+    <dependency org="junit" name="junit" rev="4.10" />
+    <dependency org="org.hibernate.javax.persistence"
+        name="hibernate-jpa-2.0-api" rev="1.0.1.Final"/>
+    <dependency org="org.hsqldb" name="hsqldb" rev="2.2.8"/>
+  </dependencies>
+</ivy-module>

@@ -1,2 +1,6 @@
+[Dependencies]
+required = savi/moon
+optional =
+
 [Lint]
 max_columns=1024
