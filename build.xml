@@ -24,7 +24,8 @@
   <!-- DIRECTORIES -->
   <property name="SAVI_HOME" value="../" />
   <property name="PROJECT_HOME" value="./" />
-  <property name="MOON_HOME" value="../moon/" />
+  <property name="MOON_HOME" value="${SAVI_HOME}/moon/" />
+  <property name="YORKDALE_HOME" value="${SAVI_HOME}/yorkdale/" />
 
   <property name="BUILD_DIR" value="${PROJECT_HOME}/build/" />
   <property name="CLASSES_DIR" value="${PROJECT_HOME}/build/classes/" />
@@ -34,6 +35,8 @@
   <property name="LIB_DIR" value="${PROJECT_HOME}/build/lib/" />
   <property name="MOON_LIB_DIR" value="${MOON_HOME}/build/lib/" />
   <property name="MOON_DIST_DIR" value="${MOON_HOME}/dist/" />
+  <property name="YORKDALE_LIB_DIR" value="${YORKDALE_HOME}/build/lib/" />
+  <property name="YORKDALE_DIST_DIR" value="${YORKDALE_HOME}/dist/" />
   <property name="RESOURCES_DIR" value="resources/" />
   <property name="SRC_DIR" value="${PROJECT_HOME}/src/java/" />
   <property name="SRC_TEST_DIR" value="${PROJECT_HOME}/test/java/" />
@@ -43,6 +46,8 @@
     <fileset dir="${LIB_DIR}" includes="*.jar" />
     <fileset dir="${MOON_LIB_DIR}" includes="*.jar" />
     <fileset dir="${MOON_DIST_DIR}" includes="*.jar" />
+    <fileset dir="${YORKDALE_LIB_DIR}" includes="*.jar" />
+    <fileset dir="${YORKDALE_DIST_DIR}" includes="*.jar" />
   </path>
 
   <path id="classpath.all">
@@ -104,6 +109,8 @@
     <mkdir dir="${LIB_DIR}" />
 
     <ant antfile="../moon/build.xml" inheritall="false" inheritrefs="false"
+        target="dist"/>
+    <ant antfile="../yorkdale/build.xml" inheritall="false" inheritrefs="false"
         target="dist"/>
   </target>
 

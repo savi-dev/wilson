@@ -12,6 +12,7 @@ import org.junit.Test;
 import ca.savi.testbed.authentication.model.AuthenticateUserRequest;
 import ca.savi.testbed.authentication.model.AuthenticationResult;
 import ca.savi.testbed.authentication.model.Credential;
+import ca.savi.testbed.datastore.model.User;
 
 /**
  * Test user authentication.
@@ -21,8 +22,8 @@ import ca.savi.testbed.authentication.model.Credential;
  */
 public class AuthenticateUserTest {
 
-  private static final String TEST_USER = "username";
-  private static final String TEST_PASSWD = "passwd";
+  private static final String TEST_USER = "summer10";
+  private static final String TEST_PASSWD = "summer10";
   static AuthenticationImpl auth;
   /**
    * Creates an authentication instance.
@@ -30,10 +31,6 @@ public class AuthenticateUserTest {
   @BeforeClass
   public static void setup() {
     auth = new AuthenticationImpl();
-    Credential cred = new Credential();
-    cred.setUsername(TEST_USER);
-    cred.setPassword(TEST_PASSWD);
-    auth.datastore.getDataStore().storeObjects(cred);
   }
 
   @Test
