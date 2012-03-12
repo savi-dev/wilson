@@ -1,5 +1,5 @@
 [Dependencies]
-required = savi/moon
+required = savi/moon, savi/yorkdale
 optional =
 
 [Lint]

@@ -12,7 +12,6 @@ import org.junit.Test;
 import ca.savi.testbed.authentication.model.AuthenticateUserRequest;
 import ca.savi.testbed.authentication.model.AuthenticationResult;
 import ca.savi.testbed.authentication.model.Credential;
-import ca.savi.testbed.datastore.model.User;
 
 /**
  * Test user authentication.
