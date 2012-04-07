@@ -1,4 +1,4 @@
-package ca.savi.testbed.authentication.model;
+package ca.savi.wilson.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

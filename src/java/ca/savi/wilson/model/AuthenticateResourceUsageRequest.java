@@ -1,5 +1,5 @@
 // Copyright (c) 2012, The SAVI Project.
-package ca.savi.testbed.authentication.model;
+package ca.savi.wilson.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Authentication request for resource usage.
- *
+ * 
  * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
  */
 // TODO(mohammad): Need to be refactored to a general interface.
@@ -37,8 +37,9 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Set's username.
-   *
-   * @param username User's name.
+   * 
+   * @param username
+   *          User's name.
    */
   public void setUsername(String username) {
     this.username = username;
@@ -52,7 +53,8 @@ public class AuthenticateResourceUsageRequest {
   }
 
   /**
-   * @param planName The desired plan name.
+   * @param planName
+   *          The desired plan name.
    */
   public void setPlanName(String planName) {
     this.planName = planName;
@@ -74,7 +76,8 @@ public class AuthenticateResourceUsageRequest {
   }
 
   /**
-   * @param resourceType Resource's type.
+   * @param resourceType
+   *          Resource's type.
    */
   public void setResourceType(String resourceType) {
     this.resourceType = resourceType;
@@ -103,6 +106,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Set's the start time of the reservation.
+   * 
    * @param startTime
    */
   public void setStartTime(String startTime) {
@@ -118,6 +122,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * The stop time of the reservation.
+   * 
    * @param stopTime
    */
   public void setStopTime(String stopTime) {
@@ -133,6 +138,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Sets whether the user can be in user.
+   * 
    * @param inUse
    */
   public void setInUse(Boolean inUse) {

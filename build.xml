@@ -5,7 +5,7 @@
   Wilson
   Main ant file.
 
-  Soheil Hasssas Yeganeh <soheil@cs.toronto.edu>
+  Mohammad Sadegh Faraji <ms.faraji@utoronto.ca>
 -->
 <project name="Wilson" default="all"
     xmlns:ivy="antlib:org.apache.ivy.ant">
@@ -37,6 +37,8 @@
   <property name="MOON_DIST_DIR" value="${MOON_HOME}/dist/" />
   <property name="YORKDALE_LIB_DIR" value="${YORKDALE_HOME}/build/lib/" />
   <property name="YORKDALE_DIST_DIR" value="${YORKDALE_HOME}/dist/" />
+  <property name="GRIFFIN_LIB_DIR" value="${GRIFFIN_HOME}/build/lib/" />
+  <property name="GRIFFIN_DIST_DIR" value="${GRIFFIN_HOME}/dist/" />
   <property name="RESOURCES_DIR" value="resources/" />
   <property name="SRC_DIR" value="${PROJECT_HOME}/src/java/" />
   <property name="SRC_TEST_DIR" value="${PROJECT_HOME}/test/java/" />
@@ -48,6 +50,8 @@
     <fileset dir="${MOON_DIST_DIR}" includes="*.jar" />
     <fileset dir="${YORKDALE_LIB_DIR}" includes="*.jar" />
     <fileset dir="${YORKDALE_DIST_DIR}" includes="*.jar" />
+    <fileset dir="${GRIFFIN_LIB_DIR}" includes="*.jar" />
+    <fileset dir="${GRIFFIN_DIST_DIR}" includes="*.jar" />
   </path>
 
   <path id="classpath.all">

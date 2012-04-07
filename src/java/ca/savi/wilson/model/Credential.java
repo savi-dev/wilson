@@ -1,6 +1,6 @@
 //Copyright (c) 2012, The SAVI Project.
 
-package ca.savi.testbed.authentication.model;
+package ca.savi.wilson.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
- *  Represents the credential of a user.
- *
+ * Represents the credential of a user.
+ * 
  * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
  * @version 0.1
  */
@@ -33,8 +33,9 @@ public class Credential {
 
   /**
    * Sets the user name.
-   *
-   * @param username User's name.
+   * 
+   * @param username
+   *          User's name.
    */
   public void setUsername(String username) {
     this.username = username;
@@ -50,8 +51,9 @@ public class Credential {
 
   /**
    * Sets user's password.
-   *
-   * @param value User's password.
+   * 
+   * @param value
+   *          User's password.
    */
   public void setPassword(String password) {
     this.password = password;

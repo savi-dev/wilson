@@ -4,7 +4,7 @@
 
   Wilson
 
-  Soheil Hasssas Yeganeh <soheil@cs.toronto.edu>
+  Mohammad Sadegh Faraji <ms.farjai@utoronto.ca>
 -->
 <ivysettings>
   <caches artifactPattern="[organisation]/[module]/[revision]/[artifact].[ext]" />
