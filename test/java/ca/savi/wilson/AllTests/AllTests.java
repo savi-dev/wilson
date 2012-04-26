@@ -1,5 +1,5 @@
 // Copyright (c) 2012, The SAVI Project.
-package ca.savi.testbed.authentication;
+package ca.savi.wilson.AllTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

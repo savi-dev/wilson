@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "AuthenticateUserRequest")
-public class AuthenticateUserRequest {
+public class AuthUserReq {
 
   @XmlElement(required = true)
   protected Credential userCredentials;

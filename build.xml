@@ -26,7 +26,7 @@
   <property name="PROJECT_HOME" value="./" />
   <property name="MOON_HOME" value="${SAVI_HOME}/moon/" />
   <property name="YORKDALE_HOME" value="${SAVI_HOME}/yorkdale/" />
-
+  <property name="GRIFFIN_HOME" value="${SAVI_HOME}/griffin/" />
   <property name="BUILD_DIR" value="${PROJECT_HOME}/build/" />
   <property name="CLASSES_DIR" value="${PROJECT_HOME}/build/classes/" />
   <property name="DIST_DIR" value="${PROJECT_HOME}/dist/" />

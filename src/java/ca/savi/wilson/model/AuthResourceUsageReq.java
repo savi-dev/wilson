@@ -8,14 +8,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Authentication request for resource usage.
- * 
+ *
  * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
  */
 // TODO(mohammad): Need to be refactored to a general interface.
 // TODO(soheil): There is no need for this value objects.
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "AuthenticateResourceUsageRequest")
-public class AuthenticateResourceUsageRequest {
+public class AuthResourceUsageReq {
   @XmlElement(required = true)
   protected String username;
   @XmlElement(required = true)
@@ -37,7 +37,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Set's username.
-   * 
+   *
    * @param username
    *          User's name.
    */
@@ -106,7 +106,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Set's the start time of the reservation.
-   * 
+   *
    * @param startTime
    */
   public void setStartTime(String startTime) {
@@ -122,7 +122,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * The stop time of the reservation.
-   * 
+   *
    * @param stopTime
    */
   public void setStopTime(String stopTime) {
@@ -138,7 +138,7 @@ public class AuthenticateResourceUsageRequest {
 
   /**
    * Sets whether the user can be in user.
-   * 
+   *
    * @param inUse
    */
   public void setInUse(Boolean inUse) {

@@ -1,75 +1,70 @@
 // Copyright (c) 2012, The SAVI Project.
-package ca.savi.testbed.authentication;
+package ca.savi.wilson.AllTests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import ca.savi.testbed.authentication.model.AuthenticateUserRequest;
-import ca.savi.testbed.authentication.model.AuthenticationResult;
-import ca.savi.testbed.authentication.model.Credential;
+import ca.savi.wilson.impl.LocalIDM;
+import ca.savi.wilson.model.AuthUserReq;
+import ca.savi.wilson.model.AuthCredentialResult;
+import ca.savi.wilson.model.Credential;
 
 /**
  * Test user authentication.
  *
  * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
- * @version 0.1
+ * @author Mohammad Sadegh Faraji <ms.faraji@utoronto.ca>
+ * @version 0.2
  */
 public class AuthenticateUserTest {
 
   private static final String TEST_USER = "summer10";
   private static final String TEST_PASSWD = "summer10";
-  static AuthenticationImpl auth;
+  static LocalIDM auth;
   /**
    * Creates an authentication instance.
    */
   @BeforeClass
   public static void setup() {
-    auth = new AuthenticationImpl();
+    auth = new LocalIDM();
   }
 
   @Test
   public void testAuthenticateUserValidUser() {
-    AuthenticateUserRequest request = new AuthenticateUserRequest();
+    AuthUserReq request = new AuthUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER);
     cred.setPassword(TEST_PASSWD);
     request.setUserCredentials(cred);
-    AuthenticationResult result = auth.authenticateUser(request);
+    AuthCredentialResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertTrue(result.isSuccessful());
   }
 
   @Test
   public void testAuthenticateUserInvalidUser() {
-    AuthenticateUserRequest request = new AuthenticateUserRequest();
+    AuthUserReq request = new AuthUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER + "s");
     cred.setPassword(TEST_PASSWD);
     request.setUserCredentials(cred);
-    AuthenticationResult result = auth.authenticateUser(request);
+    AuthCredentialResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertFalse(result.isSuccessful());
   }
 
   @Test
   public void testAuthenticateUserInvalidPassword() {
-    AuthenticateUserRequest request = new AuthenticateUserRequest();
+    AuthUserReq request = new AuthUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER);
     cred.setPassword(TEST_PASSWD + "s");
     request.setUserCredentials(cred);
-    AuthenticationResult result = auth.authenticateUser(request);
+    AuthCredentialResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertFalse(result.isSuccessful());
   }
 
-  @AfterClass
-  public static void tearDown() {
-    auth.datastore.getDataStore().shutdown();
-  }
 }

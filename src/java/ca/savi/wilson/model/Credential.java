@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Represents the credential of a user.
- * 
+ *
  * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
  * @version 0.1
  */
@@ -33,7 +33,7 @@ public class Credential {
 
   /**
    * Sets the user name.
-   * 
+   *
    * @param username
    *          User's name.
    */
@@ -51,7 +51,7 @@ public class Credential {
 
   /**
    * Sets user's password.
-   * 
+   *
    * @param value
    *          User's password.
    */

@@ -8,13 +8,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Token Model Class
- * 
+ *
  * @author Mohammad Sadegh Faraji <ms.faraji@utoronto.ca>
  * @version 0.2
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Token")
-public class AuthenticateTokenRequest {
+public class AuthTokenReq {
 
   @XmlElement(required = true)
   protected String service_endpoint;

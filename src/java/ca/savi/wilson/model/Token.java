@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Token that should be authenticated for user request.
- * 
+ *
  * @author Mohammad Sadegh Faraji <ms.faraji@utoronto.ca>
  * @version 0.2
  */
@@ -23,7 +23,7 @@ public class Token {
   protected String expirationDate;
 
   /**
-   * 
+   *
    * @return the token value
    */
   public String getId() {
@@ -31,7 +31,7 @@ public class Token {
   }
 
   /**
-   * 
+   *
    * @param value
    *          new token
    */
@@ -40,7 +40,7 @@ public class Token {
   }
 
   /**
-   * 
+   *
    * @return date until this token is valid
    */
   public String getExpirationDate() {
