@@ -2,31 +2,29 @@
 
 package ca.savi.wilson.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Represents the credential of a user.
  *
- * @author Soheil Hassas Yeganeh <soheil@cs.toronto.edu>
+ * @author Mohammad Faraji <ms.faraji@utoronto.ca>
  * @version 0.1
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@Entity
 public class Credential {
-
-  @XmlElement(required = true)
   protected String username;
-  @XmlElement(required = true)
   protected String password;
+  protected String token;
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
 
   /**
    * @return User's name.
    */
-  @Id
   public String getUsername() {
     return username;
   }

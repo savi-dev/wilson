@@ -10,15 +10,15 @@ import ca.savi.wilson.impl.LocalIDM;
  * @version 0.2
  */
 public class AuthenticationFactory {
-  Authentication authManager;
+  private static Authentication authManager;
   /**
    * Creates the default Authentication.
    *
    * @return The Identity manager.
    *@version 0.2
    */
-  public Authentication createAuthentication() {
-    if(this.authManager!=null)
+  public static Authentication createAuthentication() {
+    if(AuthenticationFactory.authManager!=null)
     {
       return authManager;
     }
@@ -28,10 +28,10 @@ public class AuthenticationFactory {
         ResourceBundle resources = ResourceBundle.getBundle("ca.savi.aaa");
         String idm = resources.getString("IDM");
         if (idm.intern() == "Local") {
-          return createLocalAuthentication();
+          authManager = createLocalAuthentication();
         }
         else if (idm.intern() == "KeyStone") {
-          return createKeyStoneAuthentication(resources.getString("Address"),
+          authManager = createKeyStoneAuthentication(resources.getString("Address"),
               resources.getString("Port"));
         }
       }
@@ -39,14 +39,14 @@ public class AuthenticationFactory {
         e.printStackTrace();
       }
     }
-    return null;
+    return authManager;
   }
 
-  private Authentication createLocalAuthentication() {
+  private static Authentication createLocalAuthentication() {
     return (Authentication) new LocalIDM();
   }
 
-  private Authentication createKeyStoneAuthentication(String address,
+  private static Authentication createKeyStoneAuthentication(String address,
       String port) {
     return (Authentication) new KeyStoneIDM(address, port);
   }

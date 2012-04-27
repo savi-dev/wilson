@@ -1,17 +1,15 @@
 // Copyright (c) 2012, The SAVI Project.
 package ca.savi.wilson;
 
-import ca.savi.wilson.model.AuthTokenReq;
-import ca.savi.wilson.model.AuthTokenResult;
+import ca.savi.wilson.model.AuthNResult;
 import ca.savi.wilson.model.AuthResourceUsageReq;
-import ca.savi.wilson.model.AuthUserReq;
-import ca.savi.wilson.model.AuthCredentialResult;
+import ca.savi.wilson.model.AuthNUserReq;
 
 /**
  * Authentication class.
  *
  * @author Eliot J. Kang <eliot@savinetwork.ca>
- * @author Mohammad Sadegh Faraji <ms.faraji>
+ * @author Mohammad Sadegh Faraji <ms.faraji@utoronto.ca>
  * @version 0.2
  */
 public interface Authentication {
@@ -21,7 +19,7 @@ public interface Authentication {
    * @param authenticateResourceUsageRequest
    * @return
    */
-  public AuthCredentialResult authenticateResourceUsage(
+  public AuthNResult authenticateResourceUsage(
       AuthResourceUsageReq authenticateResourceUsageRequest);
 
   /**
@@ -30,6 +28,5 @@ public interface Authentication {
    * @param authenticateUserRequest
    * @return
    */
-  public AuthCredentialResult authenticateUser(AuthUserReq request);
-  public AuthTokenResult authenticateToken(AuthTokenReq token);
+  public AuthNResult authenticateUser(AuthNUserReq request);
 }

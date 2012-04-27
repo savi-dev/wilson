@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ca.savi.wilson.impl.LocalIDM;
-import ca.savi.wilson.model.AuthUserReq;
-import ca.savi.wilson.model.AuthCredentialResult;
+import ca.savi.wilson.model.AuthNUserReq;
+import ca.savi.wilson.model.AuthNResult;
 import ca.savi.wilson.model.Credential;
 
 /**
@@ -33,36 +33,36 @@ public class AuthenticateUserTest {
 
   @Test
   public void testAuthenticateUserValidUser() {
-    AuthUserReq request = new AuthUserReq();
+    AuthNUserReq request = new AuthNUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER);
     cred.setPassword(TEST_PASSWD);
     request.setUserCredentials(cred);
-    AuthCredentialResult result = auth.authenticateUser(request);
+    AuthNResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertTrue(result.isSuccessful());
   }
 
   @Test
   public void testAuthenticateUserInvalidUser() {
-    AuthUserReq request = new AuthUserReq();
+    AuthNUserReq request = new AuthNUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER + "s");
     cred.setPassword(TEST_PASSWD);
     request.setUserCredentials(cred);
-    AuthCredentialResult result = auth.authenticateUser(request);
+    AuthNResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertFalse(result.isSuccessful());
   }
 
   @Test
   public void testAuthenticateUserInvalidPassword() {
-    AuthUserReq request = new AuthUserReq();
+    AuthNUserReq request = new AuthNUserReq();
     Credential cred = new Credential();
     cred.setUsername(TEST_USER);
     cred.setPassword(TEST_PASSWD + "s");
     request.setUserCredentials(cred);
-    AuthCredentialResult result = auth.authenticateUser(request);
+    AuthNResult result = auth.authenticateUser(request);
     assertNotNull(result);
     assertFalse(result.isSuccessful());
   }
