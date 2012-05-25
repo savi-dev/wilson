@@ -116,6 +116,9 @@
         target="dist"/>
     <ant antfile="../yorkdale/build.xml" inheritall="false" inheritrefs="false"
         target="dist"/>
+    <ant antfile="../griffin/build.xml" inheritall="false" inheritrefs="false"
+        target="dist"/>
+
   </target>
 
   <target name="clean">
