@@ -31,8 +31,7 @@ public class AuthenticationFactory {
           authManager = createLocalAuthentication();
         }
         else if (idm.intern() == "KeyStone") {
-          authManager = createKeyStoneAuthentication(resources.getString("Address"),
-              resources.getString("Port"));
+          authManager = createKeyStoneAuthentication(resources);
         }
       }
       catch (Exception e) {
@@ -46,8 +45,11 @@ public class AuthenticationFactory {
     return (Authentication) new LocalIDM();
   }
 
-  private static Authentication createKeyStoneAuthentication(String address,
-      String port) {
-    return (Authentication) new KeyStoneIDM(address, port);
+  private static Authentication createKeyStoneAuthentication(ResourceBundle config) {
+        KeyStoneIDM ks= new KeyStoneIDM();
+        ks.keystone.setCredentialEndpoint(config.getString("AUTH_URI"));
+        ks.keystone.setTokenEndpoint(config.getString("TOKEN_URI"));
+        ks.keystone.setTokenEndpoint(config.getString("SERVICE_TOKEN"));
+        return (Authentication) ks;
   }
 }

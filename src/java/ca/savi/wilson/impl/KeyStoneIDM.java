@@ -1,7 +1,7 @@
 // Copyright (c) 2012, The SAVI Project.
 package ca.savi.wilson.impl;
 
-import ca.savi.aaa.keystone.API.KSServiceAPI;
+import ca.savi.aaa.keystone.API.KSDriver;
 import ca.savi.aaa.keystone.model.KSUserAuthResp;
 import ca.savi.wilson.Authentication;
 import ca.savi.wilson.model.AuthNResult;
@@ -14,12 +14,12 @@ import ca.savi.wilson.model.AuthResourceUsageReq;
  */
 public class KeyStoneIDM implements Authentication {
 
-  private KSServiceAPI ksConnect;
+  public KSDriver keystone;
   public KSUserAuthResp response;
   private AuthNResult authenticationResult = null;
 
-  public KeyStoneIDM(String address, String port) {
-    ksConnect = new KSServiceAPI(address, port);
+  public KeyStoneIDM() {
+    keystone = KSDriver.getInstance();
     this.authenticationResult = new AuthNResult();
   }
 
@@ -38,7 +38,7 @@ public class KeyStoneIDM implements Authentication {
     {
       return authenticateToken(req);
     }
-    response = ksConnect.authenticateCred(req.getUserCredentials().getUsername(),
+    response = keystone.authenticateUser(req.getUserCredentials().getUsername(),
         req.getUserCredentials().getPassword());
 
     return decorateAuthCredResponse();
@@ -58,7 +58,7 @@ public class KeyStoneIDM implements Authentication {
   }
 
   public AuthNResult authenticateToken(AuthNUserReq req) {
-    response = ksConnect.authenticateToken(req.getUserCredentials().getToken());
+    response = keystone.validateToken(req.getUserCredentials().getToken());
 
     return decorateTokeAuthReponse();
   }
