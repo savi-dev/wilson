@@ -17,39 +17,16 @@ public class AuthenticationFactory {
    * @return The Identity manager.
    *@version 0.2
    */
-  public static Authentication createAuthentication() {
-    if(AuthenticationFactory.authManager!=null)
-    {
+  public static Authentication createAuthentication(String authUri) {
+    if(AuthenticationFactory.authManager!=null) {
       return authManager;
-    }
-    else
-    {
-      try {
-        ResourceBundle resources = ResourceBundle.getBundle("ca.savi.aaa");
-        String idm = resources.getString("IDM");
-        if (idm.intern() == "Local") {
-          authManager = createLocalAuthentication();
-        }
-        else if (idm.intern() == "KeyStone") {
-          authManager = createKeyStoneAuthentication(resources);
-        }
-      }
-      catch (Exception e) {
-        e.printStackTrace();
-      }
+    } else {
+      KeyStoneIDM ks= new KeyStoneIDM();
+      ks.keystone.setCredentialEndpoint(authUri);
+      ks.keystone.setTokenEndpoint(authUri);
+      ks.keystone.setTokenEndpoint("ADMIN");
+      authManager = (Authentication) ks;
     }
     return authManager;
-  }
-
-  private static Authentication createLocalAuthentication() {
-    return (Authentication) new LocalIDM();
-  }
-
-  private static Authentication createKeyStoneAuthentication(ResourceBundle config) {
-        KeyStoneIDM ks= new KeyStoneIDM();
-        ks.keystone.setCredentialEndpoint(config.getString("AUTH_URI"));
-        ks.keystone.setTokenEndpoint(config.getString("TOKEN_URI"));
-        ks.keystone.setTokenEndpoint(config.getString("SERVICE_TOKEN"));
-        return (Authentication) ks;
   }
 }
